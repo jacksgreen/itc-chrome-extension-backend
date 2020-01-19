@@ -52,6 +52,5 @@ urllib3==1.25.7
 waitress==1.4.2
 webencodings==0.5.1
 Werkzeug==0.16.0
-win10toast==0.9
 wrapt==1.11.2
 wrk==0.3.2
