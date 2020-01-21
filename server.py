@@ -5,7 +5,6 @@ import json
 import os
 import requests
 import random
-import time
 
 app = Flask(__name__)
 CORS(app)
@@ -46,7 +45,6 @@ def getURL():
 @app.route('/icon', methods=['GET'])
 def get_icon():
     global RESPONSE
-    time.sleep(2)
     return json.dumps({"icon": RESPONSE["mainProduct"]["ecoScore"]})
 
 
