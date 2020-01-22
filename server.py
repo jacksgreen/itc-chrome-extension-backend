@@ -35,11 +35,11 @@ def obj_dict(obj):
 @app.route('/', methods=['GET'])
 def getResponse():
     global RESPONSE, chromeURL
-    # if(chromeURL != ''):
-    #     chromeURL = ''
-    return json.dumps(RESPONSE, default=obj_dict)
-    # else:
-    #     return json.dumps({'msg': 'No URL'})
+    if(chromeURL != ''):
+        chromeURL = ''
+        return json.dumps(RESPONSE, default=obj_dict)
+    else:
+        return json.dumps({'msg': 'No URL'})
 
 
 @app.route('/url', methods=['GET'])
@@ -59,11 +59,7 @@ def get_data():
     global chromeURL
     url = request.args.get('url')
     chromeURL = url
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    img = soup.find("img")
-    src = img["src"]
-    return json.dumps({"src": src})
+    return json.dumps(RESPONSE, default=obj_dict)
 
 
 if __name__ == "__main__":
