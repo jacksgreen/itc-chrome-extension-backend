@@ -43,6 +43,7 @@ def obj_dict(obj):
 @app.route('/', methods=['GET'])
 def getResponse():
     global RESPONSE, chromeURL
+    print(chromeURL)
     if(chromeURL != ''):
         chromeURL = ''
         return json.dumps(RESPONSE, default=obj_dict)
@@ -66,6 +67,7 @@ def get_icon():
 def get_data():
     global chromeURL
     url = request.args.get('url')
+    chromeURL = url
     return json.dumps(RESPONSE, default=obj_dict)
 
 
