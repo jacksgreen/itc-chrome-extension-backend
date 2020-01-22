@@ -43,7 +43,6 @@ def obj_dict(obj):
 @app.route('/', methods=['GET'])
 def getResponse():
     global RESPONSE, chromeURL
-    print(chromeURL)
     if(chromeURL != ''):
         chromeURL = ''
         return json.dumps(RESPONSE, default=obj_dict)
