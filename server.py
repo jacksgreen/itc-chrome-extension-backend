@@ -43,7 +43,7 @@ def getURL():
 @app.route('/icon', methods=['GET'])
 def get_icon():
     global RESPONSE
-    return json.dumps({"icon": RESPONSE["mainProduct"]["ecoScore"]})
+    return json.dumps({"icon": RESPONSE["mainProduct"]["ecoscore"]})
 
 
 @app.route('/data', methods=['GET'])
