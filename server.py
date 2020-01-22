@@ -57,10 +57,7 @@ def get_icon():
 
 @app.route('/data', methods=['GET'])
 def get_data():
-    global chromeURL
-    print('1')
     url = request.args.get('url')
-    chromeURL = url
     return json.dumps(RESPONSE, default=obj_dict)
 
 
