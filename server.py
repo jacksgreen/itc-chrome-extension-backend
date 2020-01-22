@@ -11,18 +11,10 @@ CORS(app)
 
 
 RESPONSE = {'msg': 'Success',
-            'mainProduct': {'price': '$5', 'titleName': 'White V-neck', 'subTitle': 'Amazon product 1',
-                            'ecoScore': '6', 'photoUrl': 'https://shirtsofcotton.com/en/media/catalog/product/cache/10/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/s/o/soc.02-wit-t-shirt-basic-v-hals.jpg',
-                            'details': '100% cotton'},
-            'firstSuggestion': {'price': '$7', 'titleName': 'White T-Shirt 1', 'subTitle': 'Amazon product 2',
-                                'ecoScore': '3', 'photoUrl': 'https://cowesclothing.com/uploaded/thumbnails/16823185/rna1-white-(A)_16823185_1080xauto.png',
-                                'details': '90% cotton 10% Plastic'},
-            'secondSuggestion': {'price': '$2', 'titleName': 'White T-Shirt 2', 'subTitle': 'Amazon product 3 ',
-                                 'ecoScore': '5', 'photoUrl': 'https://5.imimg.com/data5/YB/QU/MY-24671135/blank-t-shirt-500x500.jpg',
-                                 'details': '70% cotton'},
-            'thirdSuggestion': {'price': '$3', 'titleName': 'White T-Shirt 3', 'subTitle': 'Amazon product 4',
-                                'ecoScore': '1', 'photoUrl': 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1553119996-everlane-1553119988.jpg',
-                                'details': '10% cotton'},
+            'mainProduct': {'brand': '2UNDR', 'title': "2UNDR Men's Luxury V-Neck Tees", 'composition': ['modal', 'polyester'], 'type': 'T-Shirts', 'parent_type': 'Shirts', 'price': 39.98, 'features': ['No Closure closure', 'Classic V-neck', 'Modal/Poly blend', 'Ordr resistant material'], 'ecoscore': 1, 'photoUrl': 'https://images-na.ssl-images-amazon.com/images/I/71h1rgjhwvL._AC_UX679_.jpg', 'url': 'https://www.amazon.com/2UNDR-Mens-Luxury-V-Neck-X-Large/dp/B07JPB1BP1?pf_rd_p=700385e0-19d0-4b4c-89bf-06e23d6f1594&pd_rd_wg=eSwIV&pf_rd_r=VFZ0Z500YC2MQNGBJPD2&ref_=pd_gw_cr_simh&pd_rd_w=qoyy2&pd_rd_r=01e7c99b-25a4-4083-a5af-7ad97e1cf51b'},
+            'firstSuggestion': {'brand': '2UNDR', 'title': "2UNDR Men's Luxury V-Neck Tees", 'composition': ['modal', 'polyester'], 'type': 'T-Shirts', 'parent_type': 'Shirts', 'price': 39.98, 'features': ['No Closure closure', 'Classic V-neck', 'Modal/Poly blend', 'Ordr resistant material'], 'ecoscore': 1, 'photoUrl': 'https://images-na.ssl-images-amazon.com/images/I/71h1rgjhwvL._AC_UX679_.jpg', 'url': 'https://www.amazon.com/2UNDR-Mens-Luxury-V-Neck-X-Large/dp/B07JPB1BP1?pf_rd_p=700385e0-19d0-4b4c-89bf-06e23d6f1594&pd_rd_wg=eSwIV&pf_rd_r=VFZ0Z500YC2MQNGBJPD2&ref_=pd_gw_cr_simh&pd_rd_w=qoyy2&pd_rd_r=01e7c99b-25a4-4083-a5af-7ad97e1cf51b'},
+            'secondSuggestion': {'brand': '2UNDR', 'title': "2UNDR Men's Luxury V-Neck Tees", 'composition': ['modal', 'polyester'], 'type': 'T-Shirts', 'parent_type': 'Shirts', 'price': 39.98, 'features': ['No Closure closure', 'Classic V-neck', 'Modal/Poly blend', 'Ordr resistant material'], 'ecoscore': 1, 'photoUrl': 'https://images-na.ssl-images-amazon.com/images/I/71h1rgjhwvL._AC_UX679_.jpg', 'url': 'https://www.amazon.com/2UNDR-Mens-Luxury-V-Neck-X-Large/dp/B07JPB1BP1?pf_rd_p=700385e0-19d0-4b4c-89bf-06e23d6f1594&pd_rd_wg=eSwIV&pf_rd_r=VFZ0Z500YC2MQNGBJPD2&ref_=pd_gw_cr_simh&pd_rd_w=qoyy2&pd_rd_r=01e7c99b-25a4-4083-a5af-7ad97e1cf51b'},
+            'thirdSuggestion': {'brand': '2UNDR', 'title': "2UNDR Men's Luxury V-Neck Tees", 'composition': ['modal', 'polyester'], 'type': 'T-Shirts', 'parent_type': 'Shirts', 'price': 39.98, 'features': ['No Closure closure', 'Classic V-neck', 'Modal/Poly blend', 'Ordr resistant material'], 'ecoscore': 1, 'photoUrl': 'https://images-na.ssl-images-amazon.com/images/I/71h1rgjhwvL._AC_UX679_.jpg', 'url': 'https://www.amazon.com/2UNDR-Mens-Luxury-V-Neck-X-Large/dp/B07JPB1BP1?pf_rd_p=700385e0-19d0-4b4c-89bf-06e23d6f1594&pd_rd_wg=eSwIV&pf_rd_r=VFZ0Z500YC2MQNGBJPD2&ref_=pd_gw_cr_simh&pd_rd_w=qoyy2&pd_rd_r=01e7c99b-25a4-4083-a5af-7ad97e1cf51b'},
             }
 
 chromeURL = ''
@@ -35,7 +27,6 @@ def obj_dict(obj):
 @app.route('/', methods=['GET'])
 def getResponse():
     global RESPONSE, chromeURL
-    print('2')
     if(chromeURL != ''):
         chromeURL = ''
         return json.dumps(RESPONSE, default=obj_dict)
@@ -57,6 +48,7 @@ def get_icon():
 
 @app.route('/data', methods=['GET'])
 def get_data():
+    global chromeURL
     url = request.args.get('url')
     return json.dumps(RESPONSE, default=obj_dict)
 
