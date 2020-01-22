@@ -39,7 +39,7 @@ def getResponse():
         chromeURL = ''
         return json.dumps(RESPONSE, default=obj_dict)
     else:
-        return {'msg': 'No URL'}
+        return json.dumps({'msg': 'No URL'})
 
 
 @app.route('/url', methods=['GET'])
@@ -68,14 +68,10 @@ def get_data():
     global chromeURL
     url = request.args.get('url')
     chromeURL = url
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    img = soup.find("img")
-    src = img["src"]
-    return json.dumps({"src": src})
+    return "ok"
 
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 2700))
-    app.run(host='0.0.0.0', port=port)
-    # app.run(host='127.0.0.1', port=port)
+    # app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port)
