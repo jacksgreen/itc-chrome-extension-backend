@@ -35,6 +35,7 @@ def obj_dict(obj):
 @app.route('/', methods=['GET'])
 def getResponse():
     global RESPONSE, chromeURL
+    print('2')
     if(chromeURL != ''):
         chromeURL = ''
         return json.dumps(RESPONSE, default=obj_dict)
@@ -54,21 +55,13 @@ def get_icon():
     return json.dumps({"icon": RESPONSE["mainProduct"]["ecoScore"]})
 
 
-@app.route('/search', methods=['GET'])
-def getSearchResponse():
-    global RESPONSE
-    print('here')
-    search = request.args.get('search')
-    print(search)
-    return json.dumps(RESPONSE, default=obj_dict)
-
-
 @app.route('/data', methods=['GET'])
 def get_data():
     global chromeURL
+    print('1')
     url = request.args.get('url')
     chromeURL = url
-    return "ok"
+    return json.dumps(RESPONSE, default=obj_dict)
 
 
 if __name__ == "__main__":
