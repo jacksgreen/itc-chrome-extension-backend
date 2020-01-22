@@ -59,11 +59,7 @@ def get_data():
     global chromeURL
     url = request.args.get('url')
     chromeURL = url
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    img = soup.find("img")
-    src = img["src"]
-    return json.dumps({"src": src})
+    return "ok"
 
 
 if __name__ == "__main__":
