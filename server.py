@@ -54,6 +54,15 @@ def get_icon():
     return json.dumps({"icon": RESPONSE["mainProduct"]["ecoScore"]})
 
 
+@app.route('/search', methods=['GET'])
+def getSearchResponse():
+    global RESPONSE
+    print('here')
+    search = request.args.get('search')
+    print(search)
+    return json.dumps(RESPONSE, default=obj_dict)
+
+
 @app.route('/data', methods=['GET'])
 def get_data():
     global chromeURL
