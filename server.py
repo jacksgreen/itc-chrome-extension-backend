@@ -15,7 +15,7 @@ CORS(app)
 
 chromeURL = ''
 RESPONSE = ""
-
+all_recs = ''
 
 def load_model():
     return pd.read_excel("data.xlsx")
@@ -32,13 +32,10 @@ def obj_dict(obj):
 
 @app.route('/', methods=['GET'])
 def getResponse():
-    global chromeURL
+    global chromeURL, all_recs
     if (chromeURL != ''):
-        url = chromeURL
         chromeURL = ''
-        data = model.load_model()
-        dct = product.Product(url).to_dict()
-        return str(model.predict(data, dct))
+        return all_recs
     else:
         return json.dumps({'msg': 'No URL'})
 
@@ -72,7 +69,9 @@ def get_data():
     dct = prod.to_dict()
 
     # return str(lst)
-    return json.dumps(model.predict(data, dct, prod.scrape))
+    global all_recs
+    all_recs = json.dumps(model.predict(data, dct, prod.scrape))
+    return all_recs
     # return json.dumps(RESPONSE, default=obj_dict)
 
 
