@@ -15,9 +15,7 @@ def predict(data, dct):
 
     #new_df = pd.DataFrame.from_dict(dct, orient='index')
     #return new_df.to_dict(orient="index")
-    data = data[(data["Price"] > 0.8 * dct["price"]) & (data["Price"] < 1.2 * dct["price"]) & (
-            data["Title"] != " ")].sort_values(
-        by="ecoscore", ascending=False)[:3].set_index(pd.Index(["first_rec", "second_rec", "third_rec"]))
+    data = data[(data["Price"] > 0.8 * dct["price"]) & (data["Price"] < 1.2 * dct["price"]) & (data["Title"] != " ")].sort_values(by="ecoscore", ascending=False)[:3].set_index(pd.Index(["first_rec", "second_rec", "third_rec"]))
 
     #final_df = pd.concat([new_df, data])
 
