@@ -13,6 +13,8 @@ class Product:
                  composition=None, img=None, scrape = True):
         if composition is None:
             composition = []
+        s = requests.session()
+        s.cookies.clear()
         resp = requests.get(url, headers=headers)
         self.url = url
         self.soup = BeautifulSoup(resp.text, 'lxml')
