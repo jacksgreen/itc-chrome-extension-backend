@@ -13,17 +13,8 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
+
 chromeURL = ''
-RESPONSE = ""
-
-def load_model():
-    return pd.read_excel("data.xlsx")
-
-
-def predict(data, X_test):
-    return df.to_json(data[data["color"] == X_test["color"]] & (data[data["type"] == X_test["type"]]).sort_values(
-        columns="escore", ascending=False)[:3])
-
 
 def obj_dict(obj):
     return obj.__dict__
@@ -56,7 +47,7 @@ def get_data():
     global chromeURL
     url = request.args.get('url')
     chromeURL = url
-    data = load_model()
+    data = model.load_model()
     dct = product.Product(url).to_dict()
     #return str(lst)
     return str(model.predict(data, dct))
