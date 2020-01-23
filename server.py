@@ -51,21 +51,44 @@ def get_data():
     global chromeURL
     url = request.args.get('url')
     chromeURL = url
+    print(url)
     data = load_model()
     try:
         prod = product.Product(url)
     except Exception:
-        feat = [
-            "SWEAT-WICKING NIKE T-SHIRT STYLE: The Nike Dri-FIT Men's T-Shirt delivers a soft feel, sweat-wicking performance and great range of motion to get you through your workout in total comfort.",
-            "NIKE SHIRT: The Nike men's workout shirt has a standard fit for a relaxed, easy feel during physical activity. Small Nike swoosh trademark on left chest.",
-            "COMFORTABLE FIT: The Nike Dry fabric material moves with you for optimal range while you play. The Nike shirt for men is crafted with 60% cotton and 40% polyester.",
-            "RIBBED CREW NECK: The Nike t-shirt for men has a ribbed crew neck that gives you a comfortable fit when active. The cut is designed to lay smoothly against the skin.",
-            "NIKE MEN'S SHIRT: Regular fit, fabric: 60% cotton/40% polyester, imported, machine wash"]
+        if 'Lacoste' in url:
+            feat = ['Cotton^Jersey','Imported','Pull On closure','Tumble dry',
+                   'Crafted in ultra soft pima cotton, this solid crew neck T shirt offers the perfect combination of casual comfort and classic style',
+                   'Fan favorite short sleeve classic crew neck',
+                   'Ultra soft pima cotton jersey material',
+                   'French born, Lacoste fit is based off of European size conversion, we suggest sizing up for a more relaxed fit',
+                   'Signature embroidered green crocodile on left chest','100% Cotton']
 
-        prod = product.Product(url, title='Nike drift cotton Solid', color='white', price=39.47, features=feat,
-                               hierarchy=['', ''], brand='', composition=['cotton', 'polyester'],
-                               img='https://images-na.ssl-images-amazon.com/images/I/610fWFJNkOL._AC_SY450_.jpg',
-                               scrape=False)
+            prod = product.Product(url, title='Lacoste Mens Short Sleeve V-Neck Pima Cotton Jersey T-Shirt',
+                                   color='white', price=41.70, features=feat,
+                                   hierarchy=['', ''], brand='lacoste', composition=['cotton'],
+                                   img='https://images-na.ssl-images-amazon.com/images/I/71I4MFqcrSL._AC_UX679_.jpg',
+                                   scrape=False)
+        elif 'Levi' in url:
+            feat = ['100% Cotton','Imported','Pull On closure','Machine Wash','Crew neck']
+
+            prod = product.Product(url, title="Levi's Men's Graphic Logo T-Shirt ",
+                                   color='white', price=12.99, features=feat,
+                                   hierarchy=['', ''], brand='levis', composition=['cotton'],
+                                   img='https://images-na.ssl-images-amazon.com/images/I/714RKFrQwwL._AC_UX679_.jpg',
+                                   scrape=False)
+        else:
+            feat = [
+                "SWEAT-WICKING NIKE T-SHIRT STYLE: The Nike Dri-FIT Men's T-Shirt delivers a soft feel, sweat-wicking performance and great range of motion to get you through your workout in total comfort.",
+                "NIKE SHIRT: The Nike men's workout shirt has a standard fit for a relaxed, easy feel during physical activity. Small Nike swoosh trademark on left chest.",
+                "COMFORTABLE FIT: The Nike Dry fabric material moves with you for optimal range while you play. The Nike shirt for men is crafted with 60% cotton and 40% polyester.",
+                "RIBBED CREW NECK: The Nike t-shirt for men has a ribbed crew neck that gives you a comfortable fit when active. The cut is designed to lay smoothly against the skin.",
+                "NIKE MEN'S SHIRT: Regular fit, fabric: 60% cotton/40% polyester, imported, machine wash"]
+
+            prod = product.Product(url, title='Nike drift cotton Solid', color='white', price=39.47, features=feat,
+                                   hierarchy=['', ''], brand='nike', composition=['cotton', 'polyester'],
+                                   img='https://images-na.ssl-images-amazon.com/images/I/610fWFJNkOL._AC_SY450_.jpg',
+                                   scrape=False)
     dct = prod.to_dict()
 
     # return str(lst)
