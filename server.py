@@ -32,10 +32,13 @@ def obj_dict(obj):
 
 @app.route('/', methods=['GET'])
 def getResponse():
-    global RESPONSE, chromeURL
+    global chromeURL
     if (chromeURL != ''):
+        url = chromeURL
         chromeURL = ''
-        return json.dumps(RESPONSE, default=obj_dict)
+        data = model.load_model()
+        dct = product.Product(url).to_dict()
+        return str(model.predict(data, dct))
     else:
         return json.dumps({'msg': 'No URL'})
 
@@ -48,8 +51,7 @@ def getURL():
 
 @app.route('/icon', methods=['GET'])
 def get_icon():
-    global RESPONSE
-    return json.dumps({"icon": RESPONSE["mainProduct"]["ecoscore"]})
+    return json.dumps({"icon": 5})
 
 
 @app.route('/data', methods=['GET'])
