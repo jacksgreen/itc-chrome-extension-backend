@@ -15,7 +15,7 @@ def predict(data, dct, scrape):
 
     # new_df = pd.DataFrame.from_dict(dct, orient='index')
     # return new_df.to_dict(orient="index")
-    data = data[(data["price"] > 0.8 * dct["price"]) & (data["price"] < 1.2 * dct["price"]) & (
+    data = data[(data["price"] > 0.6 * dct["price"]) & (data["price"] < 1.4 * dct["price"]) & (
             data["title"] != " ")].sort_values(
         by="ecoscore", ascending=False)[:3].set_index(pd.Index(["firstSuggestion", "secondSuggestion", "thirdSuggestion"]))
 
