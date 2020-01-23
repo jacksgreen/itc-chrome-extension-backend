@@ -72,7 +72,7 @@ def get_data():
     dct = prod.to_dict()
 
     # return str(lst)
-    return str(model.predict(data, dct, prod.scrape))
+    return json.dumps(model.predict(data, dct, prod.scrape))
     # return json.dumps(RESPONSE, default=obj_dict)
 
 
