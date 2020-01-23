@@ -46,11 +46,6 @@ def getURL():
     return chromeURL
 
 
-@app.route('/icon', methods=['GET'])
-def get_icon():
-    return json.dumps({"icon": 5})
-
-
 @app.route('/data', methods=['GET'])
 def get_data():
     global chromeURL

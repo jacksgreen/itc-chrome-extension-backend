@@ -13,11 +13,12 @@ def predict(data, dct, scrape):
     cols = ["title", "brand", "price", "description", "brand_score", "cotton", "cot_pctg", "polyester", "pol_pctg",
             "ismale", "urlPhoto", "url", "weight", "co2", "ecoscore"]
 
+
     # new_df = pd.DataFrame.from_dict(dct, orient='index')
     # return new_df.to_dict(orient="index")
-    data = data[(data["price"] > 0.6 * dct["price"]) & (data["price"] < 1.4 * dct["price"]) & (
-            data["title"] != " ")].sort_values(
-        by="ecoscore", ascending=False)[:3].set_index(pd.Index(["firstSuggestion", "secondSuggestion", "thirdSuggestion"]))
+
+    data = data[(data["price"] > 0.8 * dct["price"]) & (data["price"] < 1.2 * dct["price"]) & (data["title"] != " ")].sort_values(by="ecoscore", ascending=False)[:3].set_index(pd.Index(["firstSuggestion", "secondSuggestion", "thirdSuggestion"]))
+
 
     # final_df = pd.concat([new_df, data])
 
