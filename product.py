@@ -8,9 +8,10 @@ MATERIALS_DICT = {'poly': 'polyester'}
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
+
 class Product:
     def __init__(self, url, title=None, color=None, price=None, features=None, hierarchy=None, brand=None,
-                 composition=None, img=None, scrape = True):
+                 composition=None, img=None, scrape=True):
         if composition is None:
             composition = []
         s = requests.session()
@@ -27,6 +28,7 @@ class Product:
         self.composition = composition
         self.img = img
         self.ecoscore = np.random.choice(np.arange(1, 11))
+        self.scrape = scrape
         if scrape:
             self.__center_col()
             self.__wayfinding()
@@ -53,7 +55,7 @@ class Product:
             self.price = price.find('span', id="priceblock_ourprice").text
         except Exception:
             self.price = np.random.uniform(10, 25)
-        #self.price = price.find('span', id="priceblock_ourprice").text
+        # self.price = price.find('span', id="priceblock_ourprice").text
         bullets_html = soup.find('div', id='feature-bullets')
         bullets_html = bullets_html.find_all('span', class_='a-list-item')
         bullets = []

@@ -9,7 +9,7 @@ def load_model():
     return pd.read_excel("data.xlsx")
 
 
-def predict(data, dct):
+def predict(data, dct, scrape):
     cols = ["title", "brand", "price", "description", "brand_score", "cotton", "cot_pctg", "polyester", "pol_pctg",
             "ismale", "urlPhoto", "url", "weight", "co2", "ecoscore"]
 
@@ -28,6 +28,7 @@ def predict(data, dct):
                            'co2': 4.47,
                            'ecoscore': 4.32}
     data['message'] = 'Success'
+    data['scraped'] = str(scrape)
     return data
 
 

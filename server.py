@@ -71,11 +71,13 @@ def get_data():
             "NIKE MEN'S SHIRT: Regular fit, fabric: 60% cotton/40% polyester, imported, machine wash"]
 
         prod = product.Product(url, title='Nike drift cotton Solid', color='white', price=39.47, features=feat,
-                               hierarchy=['', ''], brand='',composition=['cotton','polyester'],
-                               img='https://images-na.ssl-images-amazon.com/images/I/610fWFJNkOL._AC_SY450_.jpg',scrape=False)
+                               hierarchy=['', ''], brand='', composition=['cotton', 'polyester'],
+                               img='https://images-na.ssl-images-amazon.com/images/I/610fWFJNkOL._AC_SY450_.jpg',
+                               scrape=False)
     dct = prod.to_dict()
+
     # return str(lst)
-    return str(model.predict(data, dct))
+    return str(model.predict(data, dct, prod.scrape))
     # return json.dumps(RESPONSE, default=obj_dict)
 
 
